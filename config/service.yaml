@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-db-service  # This is the name you'll use in your `database.yml`
+spec:
+  selector:
+    app: myapp-db  # Ensure this matches the label of your database pod
+  ports:
+    - protocol: TCP
+      port: 5432  # Standard PostgreSQL port
+      targetPort: 5432
+  clusterIP: None  # Ensures it's a headless service, which allows DNS resolution
+

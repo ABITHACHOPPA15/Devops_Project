@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: myapp-db-service
+  username: myapp         # ✅ Replace with actual DB username
+  password: mysecretpass  # ✅ Replace with actual DB password
+  database: myapp_development  # ✅ Replace with actual DB name
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  database: myapp_production
+  host: myapp-db-service
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
